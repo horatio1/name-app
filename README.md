@@ -7,6 +7,7 @@ Go to http://horatioamariei.com/name to see it live.
 ## Development
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.0.
+Data is grabbed by using several API calls: https://api.agify.io , https://api.genderize.io/ , https://api.nationalize.io/ , https://restcountries.eu/ .
 
 ## Development server
 
