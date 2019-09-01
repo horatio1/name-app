@@ -1,14 +1,39 @@
-<span class="top-section">Enter your first name: <input type="text" #firstName (keyup.enter)="guessInfoClick(firstName.value)"/></span>
-<button (click)="guessInfoClick(firstName.value)">Guess info</button>
-<br>
-<div *ngIf="displayName">
-  <h4>For {{ displayName }}...</h4>
-  <p *ngIf="age">Guessed age: {{ age }}</p>
-  <p *ngIf="gender">Guessed gender: <span class="title-case">{{ gender }}</span></p>
-  <p *ngIf="nationalities && nationalities.length">Guessed nationality: 
-    <span *ngIf="nationalities[0]">{{ nationalities[0] }}</span>
-    <span *ngIf="nationalities[1]"> OR {{ nationalities[1] }}</span>
-    <span *ngIf="nationalities[2]"> OR {{ nationalities[2] }}</span>
-  </p>
+<div class="container">
+        
+  <div class="row justify-content-md-center">
+      <div class="col-md-8">
+          <div class="jumbotron bg-primary text-white">
+              <h1 class="text-white">Guessing by name</h1>
+              <br>
+              <h4>Enter your first name and we'll try to guess your age, gender and nationality!</h4>
+              <hr class="my-4">
+              <div class="input-group">
+                  <input type="text" #firstName (keyup.enter)="guessInfoClick(firstName.value)" class="form-control" placeholder="Enter your first name"/>
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="guessInfoClick(firstName.value)">Guess</button>
+                  </div>
+              </div>
+          </div>
+          <div *ngIf="loadedBool">
+            <h3 class="title-case">Hey {{ displayName }}!</h3>
+            <h5 *ngIf="age || gender">
+              We guess you are 
+              <span *ngIf="age">a {{ age }} year old</span> 
+              <span *ngIf="gender"> {{ gender }}</span>.
+            </h5>
+            <h5 *ngIf="nationalities && nationalities.length">
+              We think you might be
+              <span class="title-case">{{ nationalities[0] }}</span>
+              <span *ngIf="nationalities.length === 2"> or </span>
+              <span *ngIf="nationalities.length === 3">, </span>
+              <span class="title-case" *ngIf="nationalities[1]">{{ nationalities[1] }}</span>
+              <span *ngIf="nationalities[2]"> or </span>
+              <span class="title-case" *ngIf="nationalities[2]">{{ nationalities[2] }}</span>.
+            </h5>
+            <h5 *ngIf="!age || !gender || !nationalities || !nationalities.length">
+              Sorry, we couldn't guess your {{ missedArr }}.
+            </h5>
+          </div>
+      </div>
+  </div>
 </div>
-<router-outlet></router-outlet>
